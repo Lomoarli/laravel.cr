@@ -12,8 +12,13 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if (Auth::user()->status == 1)
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Админ-панель') }}
+                    </x-nav-link>
+                    @endif
+                    <x-nav-link :href="route('lk')" :active="request()->routeIs('lk')">
+                         {{ __('Личный кабинет') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -63,8 +68,13 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            @if (Auth::user()->status == 1)
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Админ-панель') }}
+            </x-responsive-nav-link>
+            @endif
+            <x-responsive-nav-link :href="route('lk')" :active="request()->routeIs('lk')">
+                {{ __('Личный кабинет') }}
             </x-responsive-nav-link>
         </div>
 

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Егор всё таки пидор...</title>
+        <title>Интернет-магазин на Laravel</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -25,7 +25,11 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
+                    @if (Auth::user()->status == 1)
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Админ-панель</a>
+                    @else
+                        <a href="{{ url('/lk') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{ @Auth::user()->name }}</a>
+                    @endif
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Войти</a>
 
@@ -37,7 +41,8 @@
             @endif
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                Егор Пидор.
+                @include('layouts.menu')
             </div>
+        </div>
     </body>
 </html>
